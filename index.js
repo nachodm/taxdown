@@ -5,14 +5,15 @@ const { response } = require('express');
 const express = require('express')
 const app = express()
 const fetch = require('node-fetch');
+const makeRequest = require('./make-request')
 const port = 3000;
 
 /**
  * Performs a get request to the exchange rates api and returns the same information in json format.
  */
 app.get('/getExchangeRates', async (req, res) => {
-    const response = await fetch('https://api.exchangeratesapi.io/latest');
-    const json = await response.json();
+    const json = await makeRequest.makeRequest();
+    res.setHeader('Content-Type', 'application/json');
     res.json(json);
 })
 
@@ -24,3 +25,4 @@ app.listen(port, (err) => {
         console.log('Serviror arrancado en el puerto ' + port)
     }
 })
+module.exports = app

@@ -1,0 +1,7 @@
+org: nachodm
+app: taxdown-challenge
+component: express
+name: express-starter
+
+inputs:
+  src: ./
